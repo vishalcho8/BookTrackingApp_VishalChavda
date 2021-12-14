@@ -21,6 +21,7 @@ namespace BookTrackingApp_VishalChavda.Pages.Admin.Categorys
 
         public IActionResult OnGet()
         {
+            ViewData["Type"] = new SelectList(_context.CategoryTypes, "Type", "Type");
             return Page();
         }
 

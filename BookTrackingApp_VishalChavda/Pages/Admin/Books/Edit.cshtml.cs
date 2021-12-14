@@ -30,12 +30,13 @@ namespace BookTrackingApp_VishalChavda.Pages.Admin.Books
                 return NotFound();
             }
 
-            Book = await _context.Books.FirstOrDefaultAsync(m => m.ISBN == id);
+            Book = await _context.Books.Include(p => p.Category).FirstOrDefaultAsync(m => m.ISBN == id);
 
             if (Book == null)
             {
                 return NotFound();
             }
+            ViewData["CatItems"] = new SelectList(_context.Categorys, "NameToken", "Type");
             return Page();
         }
 

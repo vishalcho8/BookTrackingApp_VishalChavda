@@ -21,6 +21,7 @@ namespace BookTrackingApp_VishalChavda.Pages.Admin.Books
 
         public IActionResult OnGet()
         {
+            ViewData["CatItems"] = new SelectList(_context.Categorys, "NameToken", "Type");
             return Page();
         }
 
@@ -37,6 +38,8 @@ namespace BookTrackingApp_VishalChavda.Pages.Admin.Books
 
             _context.Books.Add(Book);
             await _context.SaveChangesAsync();
+
+            ViewData["CatItems"] = new SelectList(_context.Categorys, "NameToken", "Type");
 
             return RedirectToPage("./Index");
         }

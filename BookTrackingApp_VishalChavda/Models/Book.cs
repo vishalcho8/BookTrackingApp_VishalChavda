@@ -9,13 +9,18 @@ namespace BookTrackingApp_VishalChavda.Models
 {
     public class Book
     {
-        [Key, StringLength(13, MinimumLength = 13)] //Primary Key of lenghth 13
+        [Key, StringLength(13, MinimumLength = 13)] //Primary Key of length 13
         public string ISBN { get; set; }
 
         [StringLength(35, MinimumLength = 3)]
         public string Title { get; set; }
-        public int Category { get; set; }
+        //public int Category { get; set; }
 
         public string Author { get; set; }
+
+        public string NameToken { get; set; }
+
+        public Category Category { get; set; }
+        public ICollection<CategoryType> CategoryTypes { get; set; }
     }
 }

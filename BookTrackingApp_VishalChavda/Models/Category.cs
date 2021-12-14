@@ -12,9 +12,16 @@ namespace BookTrackingApp_VishalChavda.Models
         [Key] //Primary Key
         public string NameToken { get; set; }
 
-        public int Type { get; set; }
+        //public int Type { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        public ICollection<Book> Books { get; set; }
+
+        [ForeignKey("PrimaryCatType")]
+        public string Type { get; set; }
+
+        public CategoryType PrimaryCatType { get; set; }
     }
 }

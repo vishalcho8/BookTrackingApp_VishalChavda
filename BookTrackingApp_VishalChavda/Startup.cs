@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BookTrackingApp_VishalChavda.Data;
+using Microsoft.AspNetCore.ResponseCompression;
 
 namespace BookTrackingApp_VishalChavda
 {
@@ -28,6 +29,13 @@ namespace BookTrackingApp_VishalChavda
             services.AddDbContext<BookTrackingContext>(options => {
                 options.UseSqlServer(@"name=ConnectionStrings:BookDB");
             });
+            services.AddResponseCompression(options => {
+                options.EnableForHttps = true;
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { "text/javascript", "application/javascript", "text/css" });
+            });
             services.AddRazorPages();
         }
 
@@ -44,9 +52,16 @@ namespace BookTrackingApp_VishalChavda
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseResponseCompression();
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    ctx.Context.Response.Headers.Add("Cache-Control", "31536000");
+                }
+            });
 
             app.UseRouting();
 

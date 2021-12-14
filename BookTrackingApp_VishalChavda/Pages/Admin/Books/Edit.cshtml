@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Book.Category" class="control-label"></label>
-                <input asp-for="Book.Category" class="form-control" />
+                <select asp-for="Book.Category" class="form-control" asp-items="ViewBag.CatItems"></select>
                 <span asp-validation-for="Book.Category" class="text-danger"></span>
             </div>
             <div class="form-group">

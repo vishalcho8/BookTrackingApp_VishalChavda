@@ -14,5 +14,10 @@ namespace BookTrackingApp_VishalChavda.Models
 
         [StringLength(32, MinimumLength = 3)]
         public string Name { get; set; }
+
+
+        public ICollection<Book> Books { get; set; }
+        public ICollection<Category> Categorys { get; set; }
+       
     }
 }
