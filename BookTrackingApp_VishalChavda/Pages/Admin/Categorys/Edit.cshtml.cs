@@ -36,6 +36,7 @@ namespace BookTrackingApp_VishalChavda.Pages.Admin.Categorys
             {
                 return NotFound();
             }
+            ViewData["Type"] = new SelectList(_context.CategoryTypes, "Type", "Type");
             return Page();
         }
 

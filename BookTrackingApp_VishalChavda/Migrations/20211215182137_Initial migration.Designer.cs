@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookTrackingApp_VishalChavda.Migrations
 {
     [DbContext(typeof(BookTrackingContext))]
-    [Migration("20211214212029_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20211215182137_Initial migration")]
+    partial class Initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,11 +44,8 @@ namespace BookTrackingApp_VishalChavda.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CategoryNameToken")
+                    b.Property<string>("Category")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("NameToken")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasMaxLength(35)
@@ -56,7 +53,7 @@ namespace BookTrackingApp_VishalChavda.Migrations
 
                     b.HasKey("ISBN");
 
-                    b.HasIndex("CategoryNameToken");
+                    b.HasIndex("Category");
 
                     b.ToTable("Books");
                 });
@@ -110,11 +107,11 @@ namespace BookTrackingApp_VishalChavda.Migrations
 
             modelBuilder.Entity("BookTrackingApp_VishalChavda.Models.Book", b =>
                 {
-                    b.HasOne("BookTrackingApp_VishalChavda.Models.Category", "Category")
+                    b.HasOne("BookTrackingApp_VishalChavda.Models.Category", "PrimaryCatT")
                         .WithMany("Books")
-                        .HasForeignKey("CategoryNameToken");
+                        .HasForeignKey("Category");
 
-                    b.Navigation("Category");
+                    b.Navigation("PrimaryCatT");
                 });
 
             modelBuilder.Entity("BookTrackingApp_VishalChavda.Models.Category", b =>

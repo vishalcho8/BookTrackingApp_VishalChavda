@@ -2,7 +2,7 @@
 
 namespace BookTrackingApp_VishalChavda.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,15 +44,14 @@ namespace BookTrackingApp_VishalChavda.Migrations
                     ISBN = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     Title = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: true),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryNameToken = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    Category = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.ISBN);
                     table.ForeignKey(
-                        name: "FK_Books_Categorys_CategoryNameToken",
-                        column: x => x.CategoryNameToken,
+                        name: "FK_Books_Categorys_Category",
+                        column: x => x.Category,
                         principalTable: "Categorys",
                         principalColumn: "NameToken",
                         onDelete: ReferentialAction.Restrict);
@@ -88,9 +87,9 @@ namespace BookTrackingApp_VishalChavda.Migrations
                 column: "CategoryTypesType");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_CategoryNameToken",
+                name: "IX_Books_Category",
                 table: "Books",
-                column: "CategoryNameToken");
+                column: "Category");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categorys_Type",

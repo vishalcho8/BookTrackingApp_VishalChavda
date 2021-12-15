@@ -16,7 +16,7 @@
             <input type="hidden" asp-for="Category.NameToken" />
             <div class="form-group">
                 <label asp-for="Category.Type" class="control-label"></label>
-                <input asp-for="Category.Type" class="form-control" />
+                <select asp-for="Category.Type" class="form-control" asp-items="ViewBag.Type"></select>
                 <span asp-validation-for="Category.Type" class="text-danger"></span>
             </div>
             <div class="form-group">

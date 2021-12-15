@@ -14,13 +14,18 @@ namespace BookTrackingApp_VishalChavda.Models
 
         [StringLength(35, MinimumLength = 3)]
         public string Title { get; set; }
-        //public int Category { get; set; }
-
+       
         public string Author { get; set; }
 
-        public string NameToken { get; set; }
+        //public string NameToken { get; set; }
 
-        public Category Category { get; set; }
+        //public Category Category { get; set; }
+
+        [ForeignKey("PrimaryCatT")]
+        public string Category { get; set; }
+
+        public Category PrimaryCatT { get; set; }
+
         public ICollection<CategoryType> CategoryTypes { get; set; }
     }
 }
