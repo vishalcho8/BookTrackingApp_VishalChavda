@@ -1,11 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preload" href="~/lib/bootstrap/dist/css/bootstrap.min.css" as="style" asp-append-version="true" />
+    <link rel="preload" href="~/css/site.css" as="style" asp-append-version="true" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BookTrackingApp_VishalChavda</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true" async defer></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true" async defer></script>
+    <script src="~/js/site.js" asp-append-version="true" async defer></script>
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" media="print" onload="this.media='all';" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" media="print" onload="this.media='all';" />
+
+    @await RenderSectionAsync("Schema", required: false)
+
+
 </head>
 <body>
     <header>
@@ -49,10 +61,6 @@
             &copy; 2021 - BookTrackingApp_VishalChavda - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

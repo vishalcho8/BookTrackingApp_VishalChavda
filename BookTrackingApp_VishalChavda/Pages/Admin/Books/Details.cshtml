@@ -1,4 +1,5 @@
 ﻿@page
+@using BookTrackingApp_VishalChavda.Models
 @model BookTrackingApp_VishalChavda.Pages.Admin.Books.DetailsModel
 
 @{
@@ -35,3 +36,18 @@
     <a asp-page="./Edit" asp-route-id="@Model.Book.ISBN">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
+
+@section Schema
+{
+    <script type="application/ld+json">
+        {
+            "@@context":"http://schema.org",
+            "@@type":"Book",
+            "isbn":"@Model.Book.ISBN",
+            "name":"@Model.Book.Title",
+            "author":"@Model.Book.Author",
+            "genre":"@Model.Book.Category",
+            "url":"@HttpContext.Request.GetDisplayUrl()"
+        }
+    </script>
+}
